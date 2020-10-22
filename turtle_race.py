@@ -5,6 +5,7 @@ import time
 t1 = turtle.Turtle()
 t2 = turtle.Turtle()
 drawer = turtle.Turtle()
+noFinish = True
 
 color_list = ["red", "green", "blue", "yellow", "cyan", "magenta"]
 speed = random.randint(0, 20)
@@ -47,14 +48,12 @@ turtle.write("GO!", font = style, align = "center")
 time.sleep(2)
 turtle.clear()
 
-while (t1.pos() or t2.pos()) != ((300, t1y) or (300, t2y)):
-    t1.speed(speed)
-    t2.speed(speed)
-    t1.forward(distance)
-    t2.forward(distance)
-
-if (t1.pos() == (300, t1y) or t2.pos() == (300, t2y)):
-    t1.speed(0)
-    t2.speed(0)
+while noFinish:
+    if ((t1.xcor() < 300) or (t2.xcor() < 300)):
+        distance = random.randint(0, 25)
+        t1.forward(distance)
+        t2.forward(distance)
+    else:
+        noFinish = False
 
 turtle.mainloop()
